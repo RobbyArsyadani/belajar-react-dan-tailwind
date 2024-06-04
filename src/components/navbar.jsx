@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const user = {
   name: "Tom Cook",
@@ -11,8 +11,8 @@ const user = {
   imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Coba", href: "/coba", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "About", href: "/about", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -25,6 +25,13 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const [navi, setNavi] = useState(navigation);
+  const location = useLocation();
+
+  useEffect(() => {
+    setNavi((prevNavigation) => prevNavigation.map((item) => (item.href === location.pathname ? { ...item, current: true } : { ...item, current: false })));
+  }, [location.pathname]);
+
   return (
     <>
       {/*
@@ -48,7 +55,7 @@ export default function Navbar() {
                           <h1 className="belajar font-bold text-white text-4xl"> Belajar React & Tailwind</h1>
                         </div>
                         <div className=" flex items-baseline space-x-4">
-                          {navigation.map((item) => (
+                          {navi.map((item) => (
                             <Link
                               key={item.name}
                               to={item.href}
@@ -120,7 +127,7 @@ export default function Navbar() {
 
               <DisclosurePanel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
+                  {navi.map((item) => (
                     <DisclosureButton
                       key={item.name}
                       as="a"

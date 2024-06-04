@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Coba from "./coba.jsx";
+import About from "./about.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -11,8 +11,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/coba",
-    element: <Coba />,
+    path: "/about",
+    element: <About />,
   },
 ]);
 
