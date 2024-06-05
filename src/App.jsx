@@ -30,11 +30,10 @@ export default function App() {
       <Layout>
         <div className="min-h-full">
           <header className="bg-white shadow">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-6xl font-bold ">Hello</div>
+            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-6xl font-bold">Hello</div>
           </header>
           <main>
-            <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 divide-y-4">
-              {" "}
+            <div className="mx-auto max-w-7xl py-6 max-sm:px-6 lg:px-8 divide-y-4">
               {datas.map((data) => (
                 <>
                   <div className="d my-3">
