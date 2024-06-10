@@ -1,14 +1,24 @@
 /* eslint-disable no-unused-vars */
 import { Fragment, useState } from "react";
 import { useEffect } from "react";
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
-  imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  imageUrl:
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 
 const navigation = [
@@ -31,7 +41,13 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    setNavi((prevNavigation) => prevNavigation.map((item) => (item.href === location.pathname ? { ...item, current: true } : { ...item, current: false })));
+    setNavi((prevNavigation) =>
+      prevNavigation.map((item) =>
+        item.href === location.pathname
+          ? { ...item, current: true }
+          : { ...item, current: false }
+      )
+    );
   }, [location.pathname]);
 
   return (
@@ -54,14 +70,22 @@ export default function Navbar() {
                     <div className="hidden md:block">
                       <div className="bb flex flex-col gap-3">
                         <div>
-                          <h1 className="belajar font-bold text-white text-4xl"> Belajar React & Tailwind</h1>
+                          <h1 className="belajar font-bold text-white text-4xl">
+                            {" "}
+                            Belajar React & Tailwind
+                          </h1>
                         </div>
                         <div className=" flex items-baseline space-x-4">
                           {navi.map((item) => (
                             <Link
                               key={item.name}
                               to={item.href}
-                              className={classNames(item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}
+                              className={classNames(
+                                item.current
+                                  ? "bg-gray-900 text-white"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                "rounded-md px-3 py-2 text-sm font-medium"
+                              )}
                               aria-current={item.current ? "page" : undefined}
                             >
                               {item.name}
@@ -73,7 +97,10 @@ export default function Navbar() {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <button
+                        type="button"
+                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -85,7 +112,11 @@ export default function Navbar() {
                           <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-10 w-10 rounded-full" src="WhatsApp Image 2023-09-11 at 09.34.14.jpg" alt="" />
+                            <img
+                              className="h-10 w-10 rounded-full"
+                              src="WhatsApp Image 2023-09-11 at 09.34.14.jpg"
+                              alt=""
+                            />
                           </MenuButton>
                         </div>
                         <Transition
@@ -100,7 +131,13 @@ export default function Navbar() {
                             {userNavigation.map((item) => (
                               <MenuItem key={item.name}>
                                 {({ focus }) => (
-                                  <a href={item.href} className={classNames(focus ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
+                                  <a
+                                    href={item.href}
+                                    className={classNames(
+                                      focus ? "bg-gray-100" : "",
+                                      "block px-4 py-2 text-sm text-gray-700"
+                                    )}
+                                  >
                                     {item.name}
                                   </a>
                                 )}
@@ -114,13 +151,26 @@ export default function Navbar() {
                   <div className="-mr-2 flex md:hidden">
                     <div className="flex gap-10">
                       <div>
-                        <h1 className="belajar text-white font-bold text-4xl"> Belajar React & Tailwind</h1>
+                        <h1 className="belajar text-white font-bold text-4xl">
+                          {" "}
+                          Belajar React & Tailwind
+                        </h1>
                       </div>
                       {/* Mobile menu button */}
                       <DisclosureButton className="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-0.5" />
                         <span className="sr-only">Open main menu</span>
-                        {open ? <XMarkIcon className="block h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="block h-6 w-6" aria-hidden="true" />}
+                        {open ? (
+                          <XMarkIcon
+                            className="block h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Bars3Icon
+                            className="block h-6 w-6"
+                            aria-hidden="true"
+                          />
+                        )}
                       </DisclosureButton>
                     </div>
                   </div>
@@ -134,7 +184,12 @@ export default function Navbar() {
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className={classNames(item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")}
+                      className={classNames(
+                        item.current
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "block rounded-md px-3 py-2 text-base font-medium"
+                      )}
                       aria-current={item.current ? "page" : undefined}
                     >
                       {item.name}
@@ -144,11 +199,19 @@ export default function Navbar() {
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src="WhatsApp Image 2023-09-11 at 09.34.14.jpg" alt="" />
+                      <img
+                        className="h-10 w-10 rounded-full"
+                        src="WhatsApp Image 2023-09-11 at 09.34.14.jpg"
+                        alt=""
+                      />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">Robby Arsyadani</div>
-                      <div className="text-sm font-medium leading-none text-gray-400">sampleaja@gmail.com</div>
+                      <div className="text-base font-medium leading-none text-white">
+                        Robby Arsyadani
+                      </div>
+                      <div className="text-sm font-medium leading-none text-gray-400">
+                        sampleaja@gmail.com
+                      </div>
                     </div>
                     <button
                       type="button"
@@ -161,7 +224,12 @@ export default function Navbar() {
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <DisclosureButton key={item.name} as="a" href={item.href} className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                      <DisclosureButton
+                        key={item.name}
+                        as="a"
+                        href={item.href}
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                      >
                         {item.name}
                       </DisclosureButton>
                     ))}
